@@ -10,16 +10,14 @@ var asyncAdd = (a,b) => {
   })
 };
 
-asyncAdd(1, '3').then((pass) => {
+asyncAdd(1, 3).then((pass) => {
   console.log('Result: ', pass)
-  return asyncAdd(pass, 6);
-}, (fail) => {
-  console.log(fail);
+  return asyncAdd(pass, '6');
 }).then((pass) => {
   console.log('final out put should be: ', pass)
-}, (error) =>{
-  console.log(error);
-});
+}).catch((error) => {
+  console.log("Error occurs: ", error);
+})
 
 
 
