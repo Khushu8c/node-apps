@@ -1,6 +1,8 @@
 const express = require('express');
 var app = express();
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', (request, response) => {
   response.send('Hello server!');
 });
@@ -16,4 +18,6 @@ app.get('/json', (request, response) => {
   });
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log('Server gets started on 3000 port');
+});
