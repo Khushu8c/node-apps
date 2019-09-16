@@ -8,7 +8,7 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) =>{
  console.log('Connected to MongoDB Server');
 
   db.collection('Todos').find().toArray().then((docs) => {
-    console.log('TOdos');
+    console.log('Todos');
     console.log(JSON.stringify(docs, undefined, 2));
   }, (error) => {
     console.log('Unable to fetch data: ', error);
