@@ -1,4 +1,8 @@
 const {MongoClient} = require('mongodb');
+
+var user = {name: 'soniya', age: 25};
+var {age} = user;
+console.log('******************', age)
 MongoClient.connect('mongodb://localhost:27017', (err, client) =>{
   if (err) {
     return console.log('Unable to connect to MongoDB Server');
@@ -7,10 +11,16 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) =>{
  var db = client.db('TodoApp');
  console.log('Connected to MongoDB Server');
 
-  db.collection('Todos').find().toArray().then((docs) => {
-    console.log('TOdos');
-    console.log(JSON.stringify(docs, undefined, 2));
-  }, (error) => {
-    console.log('Unable to fetch data: ', error);
-  })
+  db.collection('Todos').insertOne({
+    text: 'Todo something',
+    completed: false
+  }, (err, result) => {
+    if (err) {
+      return console.log('Unablet to insert data. Reasons: ', err)
+    }
+
+    console.log(JSON.stringify(result.ops, undefined, 2));
+    console.log(result.ops[0]._id, '@2@@@@@@@@@@@@@@');
+  });
+
 });
