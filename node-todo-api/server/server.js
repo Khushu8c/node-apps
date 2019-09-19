@@ -6,6 +6,7 @@ var _ = require('lodash');
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./model/todo');
 var {User} = require('./model/user');
+var {authenticate} = require('./middleware/authenticate');
 
 var app = express();
 
@@ -51,6 +52,10 @@ app.post('/users', (req, res) => {
     return res.status(400).send(error);
   })
 
+});
+
+app.get('/users/me', authenticate, (req, res) => {
+res.send(req.user);
 });
 
 app.listen(3000, () => {
