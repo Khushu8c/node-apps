@@ -8,7 +8,7 @@ var password = 'soniya123!';
 // });
 
 var hashPwd = '$2a$10$YMB/AEjMzd69xqgiY79IIurzmyKBvzY5AKSkgqtLw0GfL/tE.Gyee';
-bcrypt.compare('soniya123!', hashPwd, (err, res) => {
+bcrypt.compare('soniya12!', hashPwd, (err, res) => {
 console.log(res);
 });
 
