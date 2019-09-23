@@ -58,6 +58,19 @@ app.get('/users/me', authenticate, (req, res) => {
 res.send(req.user);
 });
 
+app.post('/users/login', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+  
+   User.findByCredentials(body.email, body.password).then((user) => {
+    return user.generateAuthToken().then((token) => {
+    res.header('x-auth', token).send(user.toJSON());
+    });
+  }).catch((e) => {
+    console.log(e);
+    res.status(400).send(e);
+  });
+  });
+
 app.listen(3000, () => {
   console.log('Server has started on port 3000.');
 });
